@@ -1,4 +1,4 @@
-package jira_testcase;
+package jira_TC_Dashboard;
 
 import java.time.Duration;
 import org.openqa.selenium.By;
@@ -9,6 +9,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
 
 	public class BaseClass {
 		ChromeDriver driver;
@@ -35,11 +36,11 @@ import org.testng.annotations.Parameters;
 			driver.findElement(By.xpath("//div[@class='slds-icon-waffle']")).click();
 			driver.findElement(By.xpath("//button[text()='View All']")).click();
 		  
-		    WebElement element = driver.findElement(By.xpath("//p[text()='Work Type Groups']"));
+		    WebElement element = driver.findElement(By.xpath("//p[text()='Dashboards']"));
 		     Actions builder = new Actions(driver); 
 		    builder.moveToElement(element).perform();
 		    
-		    driver.findElement(By.xpath("//p[text()='Work Type Groups']")).click();
+		    driver.findElement(By.xpath("//p[text()='Dashboards']")).click();
 		    
 		    Thread.sleep(3000);
 		}
@@ -47,7 +48,7 @@ import org.testng.annotations.Parameters;
 		@AfterMethod
 		public void postCondition()
 		{
-			driver.close();
+			//driver.close();
 		}
 	}
 

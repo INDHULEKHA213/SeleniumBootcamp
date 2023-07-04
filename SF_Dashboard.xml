@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Suite" parallel="false" preserve-order="true" thread-count="2" verbose="5">
-
-<parameter name="url" value="https://login.salesforce.com/"> </parameter>
+  <parameter name="url" value="https://login.salesforce.com/"> </parameter>
 <parameter name="username" value="hari.radhakrishnan@qeagle.com"> </parameter>
 <parameter name="password" value="Leaf@1234"> </parameter>
 
   <test name="Test">
     <classes>
-     <class name="jira_testcase.CreateWorkType"/>
-     <!-- <class name="jira_testcase.EditWorkType"/> 
-     <class name="jira_testcase.DeleteWorkType"/>
-     <class name="jira_testcase.CreateWorkTypeWithoutMandatoryFields"/>
-     <class name="jira_testcase.SortWorkTypeGroup"/> -->
+     <class name="jira_TC_Dashboard.BaseClass"/>
+     <class name="jira_TC_Dashboard.CreateDashboard"/>
+     <!-- <class name="jira_TC_Dashboard.EditDashboard"/> 
+     <class name="jira_TC_Dashboard.DeleteDashboard"/>
+     <class name="jira_TC_Dashboard.SortDashboard"/> 
+     <class name="jira_TC_Dashboard.VerifyDashboardSubscribe"/> --> 
 </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

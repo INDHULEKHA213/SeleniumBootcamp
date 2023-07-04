@@ -1,13 +1,18 @@
-package jira_testcase;
+package jira_TC_Dashboard;
 
+import java.io.File;
+import java.io.IOException;
+
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
-public class CreateWorkTypeWithoutMandatoryFields extends BaseClass{
+public class VerifyDashboardSubscribe extends BaseClass{
 
 	@Test
-    public void worktypewithoutmandatoryfields() {
+    public void worktypewithoutmandatoryfields() throws InterruptedException, IOException {
 		
 		 driver.findElement(By.xpath("//one-app-nav-bar-item-root/a/span[contains(text(),'Work Type Groups')]/following::one-app-nav-bar-item-dropdown/div/one-app-nav-bar-menu-button")).click();
 		    
@@ -22,6 +27,12 @@ public class CreateWorkTypeWithoutMandatoryFields extends BaseClass{
 		    driver.findElement(By.xpath("//button[text()='Save']")).click();
 	
 		    String text = driver.findElement(By.xpath("//div[@role='alert']")).getText();
+		    
+		    Thread.sleep(3000);
+
+			File source = driver.getScreenshotAs(OutputType.FILE);
+			File dest = new File("./snaps/createWtypeWithoutMandatory.png");
+			FileUtils.copyFile(source, dest);
 		    
 			if(text.contains("Complete")) {
 				System.out.println("Alert message : Complete this field message is displayed for Work Type Group Name field");
