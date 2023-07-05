@@ -3,6 +3,6 @@
 .settings/
 target/
 test-output/
-data
-snaps
-snaps_Dashboard
+data/
+snaps/
+snaps_Dashboard/
