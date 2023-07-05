@@ -5,6 +5,8 @@ import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
@@ -17,31 +19,29 @@ public class TestCase001 extends TestDataProvider{
 
 	@BeforeTest
 	public void setValues() {
-		excelFileName="Register";
+		excelFileName="CreateLead";
 	}
 
 	@Test(dataProvider="sendData")
-	public void testCase1(String fName,String lName,String email,String	tPhone,String pWord,String confirmPword) throws InterruptedException, IOException
-	{
-		driver.findElement(By.xpath("//a[@title='My Account']")).click();
-		driver.findElement(By.xpath("//a[text()='Register']")).click();
-		driver.findElement(By.name("firstname")).click();
-		driver.findElement(By.name("firstname")).sendKeys(fName);
-		driver.findElement(By.name("lastname")).click();
-		driver.findElement(By.name("lastname")).sendKeys(lName);
-		driver.findElement(By.name("email")).sendKeys(email);
-		driver.findElement(By.name("email")).click();
-		driver.findElement(By.name("telephone")).click();
-		driver.findElement(By.name("telephone")).sendKeys(tPhone);
-		driver.findElement(By.name("password")).click();
-		driver.findElement(By.name("password")).sendKeys(pWord);
-		driver.findElement(By.name("confirm")).click();
-		driver.findElement(By.name("confirm")).sendKeys(confirmPword);
-		
-		driver.findElement(By.name("agree")).click();
-		driver.findElement(By.xpath("//input[@value='Continue']")).click();
-		
-		Thread.sleep(3000);
+		public  void createLead(String cName,String fName,String lName,String dept,String desc,String email) throws InterruptedException {
+			
+			driver.findElement(By.linkText("Leads")).click();
+			driver.findElement(By.linkText("Create Lead")).click();
+			driver.findElement(By.id("createLeadForm_companyName")).sendKeys(cName);
+			driver.findElement(By.id("createLeadForm_firstName")).sendKeys(fName);
+			driver.findElement(By.id("createLeadForm_lastName")).sendKeys(lName);
+			driver.findElement(By.name("departmentName")).sendKeys(dept);
+			driver.findElement(By.id("createLeadForm_description")).sendKeys(desc);
+			driver.findElement(By.id("createLeadForm_primaryEmail")).sendKeys(email);
+			
+			WebElement source=driver.findElement(By.id("createLeadForm_generalStateProvinceGeoId"));
+			Select sec = new Select(source);
+			sec.selectByVisibleText("New York");
+			
+			Thread.sleep(3000);
+			driver.findElement(By.name("submitButton")).click();
+			String title=driver.getTitle();
+			System.out.println(title);
 	}
 		    
 
@@ -51,7 +51,7 @@ public class TestCase001 extends TestDataProvider{
 				if(!result.isSuccess()) {
 		       File source = driver.getScreenshotAs(OutputType.FILE);
 		       int ranNum=(int)(Math.random()*999999+1000000);
-		       File dest = new File("./snaps/passimg"+ranNum+".png");
+		       File dest = new File("./snaps/img"+ranNum+".png");
 		       FileUtils.copyFile(source,dest);
 		       
 			}
